@@ -1,0 +1,97 @@
+
+{% extends 'base.html' %}
+
+
+{% block title %} Edit {% endblock %}
+
+{% block meta_tags %}
+
+{% endblock %}
+
+{% block navmenu %}
+    {% include 'includes/menu.html' %}
+{% endblock %}
+
+
+{% load static %}
+
+{% block content %}
+
+
+<div class="container body-wrap">
+	<div class="row">	
+		<div class="col-md-8 card-body">
+			<div class="card">
+				<div class="card-body">
+					<h1>Member: {{member.fullname}}</h1>
+
+					<p>
+						<strong>Full Name: </strong> {{member.fullname}}
+					</p>
+
+					<p>
+						<strong>Wins: </strong> {{member.wins}}
+					</p>
+
+					<p>
+						<strong>Losses: </strong> {{member.losses}}
+					</p>
+
+					<p>
+						<strong>Average Score: </strong> {{member.averagescore}}
+					</p>
+
+					<p>
+						<strong>Highest Score: </strong> {{member.highestscore}}
+					</p>
+
+					<p>
+						<strong>Date Occurred: </strong> {{member.date}}
+					</p>
+
+					<p>
+						<strong>Location: </strong> {{member.location}}
+					</p>
+
+					<p>
+						<strong>Contact: </strong> {{member.contact}}
+					</p>
+
+					<p>
+						<strong>Against Whom: </strong> {{member.opponent}}
+					</p>
+					
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 card-body">
+			<div class="card">
+				<div class="card-body">
+					<h5>Actions</h5>
+					
+					{% if member.user_id == session_user_id %}
+
+						<a href="/edit/{{member.id}}" class="btn btn-warning">Edit</a>
+						<br /><br />
+
+						<form action="{% url 'member' id %}" method="POST">	
+							{% csrf_token %}
+							<input type="submit" class="btn btn-danger" name="delete_btn" value="Delete">
+						</form>
+
+					{% else %}
+
+						<p>No options for you.</p>
+
+					{% endif %}
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+{% endblock %}

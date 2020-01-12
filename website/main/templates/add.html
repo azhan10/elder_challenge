@@ -1,0 +1,78 @@
+
+{% extends 'base.html' %}
+
+
+{% block title %} Add {% endblock %}
+
+{% block meta_tags %}
+
+{% endblock %}
+
+{% block navmenu %}
+    {% include 'includes/menu.html' %}
+{% endblock %}
+
+
+{% load static %}
+
+{% block content %}
+
+
+<div class="container body-wrap">
+	<div class="row">	
+		<div class="col-md-3 card-body"></div>
+		<div class="col-md-6 card-body">
+			<div class="card">
+				<div class="card-body">
+					<h1>Add Member</h1>
+					<form action="{% url 'add' %}" method="POST">
+						{% csrf_token %}
+
+						<input required placeholder="Full name *" type="text" class="form-control" name="fullname">
+						<br />
+
+						<input required type="number" class="form-control" name="wins" placeholder="Number of wins *">
+						<br />
+
+						<input required type="number" class="form-control" name="losses" placeholder="Number of losses *">
+						<br />
+
+						<input required type="number" class="form-control" name="averagescore" placeholder="Average score *">
+						<br />
+
+						<input required type="number" class="form-control" name="highestscore" placeholder="Highest score *">
+						<br />
+
+						<label>Date it occurred *</label>
+						<input required type="date" class="form-control" name="date" placeholder="When did it happen *">
+						<br />
+
+						<textarea required rows="4" class="form-control" name="location" placeholder="Location it occur *"></textarea>
+						<br />
+
+						<input required type="number" class="form-control" name="contact" placeholder="Contact number *">
+						<br />
+
+						<textarea required rows="4" class="form-control" name="opponent" placeholder="Name of opponent *"></textarea>
+						<br />
+
+						<div class="text-center">
+							<input class="btn btn-dark" type="submit" value="Add">
+						</div>
+					</form>
+
+					{% if message != None %}
+						<br />
+						<p style="color: red;" class="text-center">{{message}}</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3 card-body"></div>
+	</div>
+</div>
+
+
+
+
+{% endblock %}

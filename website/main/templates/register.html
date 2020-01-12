@@ -1,0 +1,61 @@
+
+{% extends 'base.html' %}
+
+
+{% block title %}Sign Up {% endblock %}
+
+
+{% block meta_tags %}
+{% endblock %}
+
+
+{% block navmenu %}
+	{% include 'includes/menu.html' %}
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="container body-wrap">
+	<div class="row">	
+		<div class="col-md-3 card-body"></div>
+		<div class="col-md-6 card-body">
+			<div class="card">
+				<div class="card-body">
+					<h1>Sign Up</h1>
+					<form action="{% url 'register' %}" method="POST">
+						{% csrf_token %}
+
+						<input required class="form-control"  type="email" name="email" placeholder="Email *">
+						<br />
+
+						<input required class="form-control"  type="password" name="password" placeholder="Password *">
+						<br />
+
+						<div class="text-center">
+							<!-- <small>By signing in, you will agree the <a href="privacy">Privacy Policy</a> and the <a href="tos">Terms and Conditions</a>.</small> -->
+							<!-- <br /> -->
+							<small><a href="login">Already a member? Sign in.</a></small>
+						</div>
+						<br />
+
+						<div class="text-center">
+							<input class="btn btn-dark" type="submit" value="Sign Up">
+						</div>
+					</form>
+
+
+
+					{% if message != None %}
+						<br />
+						<p style="color: red;" class="text-center">{{message}}</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3 card-body"></div>
+	</div>
+</div>
+
+{% endblock %}

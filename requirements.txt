@@ -1,0 +1,11 @@
+django
+mysqlclient
+django-crispy-forms
+python-dateutil
+stripe
+braintree
+pandas
+pycrypto
+django-cors-headers
+Pillow
+Crypto

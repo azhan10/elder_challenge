@@ -1,0 +1,77 @@
+
+{% extends 'base.html' %}
+
+
+{% block title %} Edit {% endblock %}
+
+{% block meta_tags %}
+
+{% endblock %}
+
+{% block navmenu %}
+    {% include 'includes/menu.html' %}
+{% endblock %}
+
+
+{% load static %}
+
+{% block content %}
+
+
+<div class="container body-wrap">
+	<div class="row">	
+		<div class="col-md-3 card-body"></div>
+		<div class="col-md-6 card-body">
+			<div class="card">
+				<div class="card-body">
+					<h1>Edit Member: {{member.fullname}}</h1>
+					<form action="{% url 'edit' id %}" method="POST">
+						{% csrf_token %}
+
+						<input value="{{member.fullname}}" required placeholder="Full Name" type="text" class="form-control" name="fullname">
+						<br />
+
+						<input value="{{member.wins}}" required type="number" class="form-control" name="wins" placeholder="Number of wins">
+						<br />
+
+						<input value="{{member.losses}}" required type="number" class="form-control" name="losses" placeholder="Number of losses">
+						<br />
+
+						<input value="{{member.averagescore}}" required type="number" class="form-control" name="averagescore" placeholder="Average Score">
+						<br />
+
+						<input value="{{member.highestscore}}" required type="number" class="form-control" name="highestscore" placeholder="Highest Score">
+						<br />
+
+						<input value="{{member.date|date:'Y-m-d'}}" required type="date" class="form-control" name="date" placeholder="When did it happen">
+						<br />
+
+						<textarea required rows="4" class="form-control" name="location" placeholder="Location it occur">{{member.location}}</textarea>
+						<br />
+
+						<input required type="number" class="form-control" name="contact" placeholder="Contact number *">
+						<br />
+
+						<textarea required rows="4" class="form-control" name="opponent" placeholder="Name of opponent">{{member.opponent}}</textarea>
+						<br />
+
+						<div class="text-center">
+							<input class="btn btn-dark" type="submit" value="Edit">
+						</div>
+					</form>
+
+					{% if message != None %}
+						<br />
+						<p style="color: red;" class="text-center">{{message}}</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3 card-body"></div>
+	</div>
+</div>
+
+
+
+
+{% endblock %}
